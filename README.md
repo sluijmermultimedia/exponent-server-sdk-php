@@ -1,23 +1,34 @@
 # exponent-server-sdk-php
 Server-side library for working with Expo push notifications using PHP
+Without storing the tokens by default
+
 
 [![Latest Stable Version](https://poser.pugx.org/alymosul/exponent-server-sdk-php/v/stable)](https://packagist.org/packages/alymosul/exponent-server-sdk-php)
 [![License](https://poser.pugx.org/alymosul/exponent-server-sdk-php/license)](https://packagist.org/packages/alymosul/exponent-server-sdk-php)
 [![Total Downloads](https://poser.pugx.org/alymosul/exponent-server-sdk-php/downloads)](https://packagist.org/packages/alymosul/exponent-server-sdk-php)
 
 # Usage
-- Require the package in your project
+- composer.json
+        
+        "repositories": [
+            {
+              "type": "vcs",
+              "url": "https://github.com/sluijmermultimedia/exponent-server-sdk-php"
+            }
+          ],
+          "require": {
+            "php": ">=7.1.0",
+            "alymosul/exponent-server-sdk-php": "dev-master"
+          }
+          
 
-        composer require alymosul/exponent-server-sdk-php
+        
         
 - In a php file
         
         require_once __DIR__.'/vendor/autoload.php';
         
-        $interestDetails = ['unique identifier', 'ExponentPushToken[unique]'];
-        
-        // You can quickly bootup an expo instance
-        $expo = \ExponentPhpSDK\Expo::normalSetup();
+        $interestDetails = ['ExponentPushToken[unique]'];
         // Build the notification data
         $notification = ['body' => 'Hello World!'];
         

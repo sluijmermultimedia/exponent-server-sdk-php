@@ -3,7 +3,6 @@
 namespace ExponentPhpSDK;
 
 use ExponentPhpSDK\Exceptions\ExpoException;
-use ExponentPhpSDK\Repositories\ExpoFileDriver;
 
 class Expo
 {
@@ -31,46 +30,9 @@ class Expo
      *
      * @param ExpoRegistrar $expoRegistrar
      */
-    public function __construct(ExpoRegistrar $expoRegistrar)
+    public function __construct()
     {
-        $this->registrar = $expoRegistrar;
-    }
-
-    /**
-     * Creates an instance of this class with the normal setup
-     * It uses the ExpoFileDriver as the repository.
-     *
-     * @return Expo
-     */
-    public static function normalSetup()
-    {
-        return new self(new ExpoRegistrar(new ExpoFileDriver()));
-    }
-
-    /**
-     * Subscribes a given interest to the Expo Push Notifications.
-     *
-     * @param $interest
-     * @param $token
-     *
-     * @return string
-     */
-    public function subscribe($interest, $token)
-    {
-        return $this->registrar->registerInterest($interest, $token);
-    }
-
-    /**
-     * Unsubscribes a given interest from the Expo Push Notifications.
-     *
-     * @param $interest
-     * @param $token
-     *
-     * @return bool
-     */
-    public function unsubscribe($interest, $token = null)
-    {
-        return $this->registrar->removeInterest($interest, $token);
+        $this->registrar = new ExpoRegistrar();
     }
 
     /**
@@ -96,10 +58,7 @@ class Expo
             throw new ExpoException('Interests array must not be empty.');
         }
 
-        // Gets the expo tokens for the interests
-        $recipients = $this->registrar->getInterests($interests);
-
-        foreach ($recipients as $token) {
+        foreach ($interests as $token) {
             $postData[] = $data + ['to' => $token];
         }
 
