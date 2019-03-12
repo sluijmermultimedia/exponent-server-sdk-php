@@ -28,12 +28,11 @@ Without storing the tokens by default
         
         require_once __DIR__.'/vendor/autoload.php';
         
-        $interestDetails = ['ExponentPushToken[unique]'];
+        $expo = new \ExponentPhpSDK\Expo();
         // Build the notification data
         $notification = ['body' => 'Hello World!'];
-        
         // Notify an interest with a notification
-        $expo->notify($interestDetails[0], $notification);
+        $expo->notify($interestDetails, $notification);
         
 Data can be added to notifications by providing it as a JSON object. For example
 
