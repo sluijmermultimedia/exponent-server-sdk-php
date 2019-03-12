@@ -18,10 +18,6 @@ Server-side library for working with Expo push notifications using PHP
         
         // You can quickly bootup an expo instance
         $expo = \ExponentPhpSDK\Expo::normalSetup();
-        
-        // Subscribe the recipient to the server
-        $expo->subscribe($interestDetails[0], $interestDetails[1]);
-        
         // Build the notification data
         $notification = ['body' => 'Hello World!'];
         
